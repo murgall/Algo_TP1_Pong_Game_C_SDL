@@ -33,6 +33,7 @@ int main(int argc, char *argv[])
                     scanf("%i",&choix);
                 }
                 if (choix==1){
+                        //initialise la fenêtre
                         init("Chapter 1 setting up SDL",SDL_WINDOWPOS_CENTERED,SDL_WINDOWPOS_CENTERED,SCREEN_WIDTH,SCREEN_HEIGHT,SDL_WINDOW_SHOWN,&myGame);
                                 while(state.g_bRunning){
                                     sens_h=move_BallH(&depBall,sens_h);

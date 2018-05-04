@@ -1,5 +1,6 @@
 #include "config_jeux.h"
 
+//permet d'initialiser la fenetre et le render
 int init(char *title, int xpos,int ypos,int width, int height,int flags,game *myGame){
     myGame->g_pWindow=NULL;
     myGame->g_pRenderer=NULL;

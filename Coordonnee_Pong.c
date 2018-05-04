@@ -1,20 +1,25 @@
 #include "Coordonnee_Pong.h"
 #include "define.h"
 
+//Permet le deplacement sur la hauteur de la balle
 SensH move_BallH(coordonnees *depBall,SensH sens_h)
 {
+    //Si la balle se deplace en haut
  if (sens_h==Montee)
 {
     depBall->y-=2;
 }
+//Si la balle se deplace en bas
 else if (sens_h==Descente)
 {
  depBall->y+=2;
 }
+//Si la balle touche le bord inferieur
 if (depBall->y>SCREEN_HEIGHT-20)
 {
     sens_h=Montee;
 }
+//Si laballe touche le bord superieur
 else if (depBall->y<0)
 {
     sens_h=Descente;
@@ -23,21 +28,25 @@ return sens_h;
 }
 
 
-
+//Permet le deplacement sur l'axe x de la balle
 SensW move_BallW(coordonnees *depBall,SensW sens_w)
 {
+    //Si la balle se deplace a gauche
  if (sens_w==Gauche)
 {
     depBall->x-=2;
 }
+    //Si la balle se deplace a droite
 else if (sens_w==Droite)
 {
  depBall->x+=2;
 }
+    //Si la balle touche le bord droit de la fenetre
 if (depBall->x>SCREEN_WIDTH-20)
 {
     sens_w=Gauche;
 }
+    //Si la balle touche le bord gauche de la fenetre
 else if (depBall->x<0)
 {
     sens_w=Droite;
@@ -45,6 +54,8 @@ else if (depBall->x<0)
 return sens_w;
 }
 
+
+//permet de représenter les pallet, la balle , le filet ainsi que la collision entre le palet et la balle
 void renderPong(game *myGame,coordonnees *dep,coordonnees *dep2,coordonnees *depBall,SensW sens_w) {
 
         int verif_collision=0;
@@ -99,6 +110,7 @@ void renderPong(game *myGame,coordonnees *dep,coordonnees *dep2,coordonnees *dep
         Ball.w=20; //Largeur
         Ball.h=20; //Hauteur
 
+        //verification d'une eventuelle collision entre un palet et la balle
         verif_collision=check_collision(PaddleJ1,PaddleJ2,Ball);
 
         if (verif_collision==1)
@@ -143,7 +155,7 @@ void renderPong(game *myGame,coordonnees *dep,coordonnees *dep2,coordonnees *dep
 }
 
 
-
+//Renvoie s'il y a collision ou non entre  un palet et la balle
 int check_collision(SDL_Rect PaddleJ1,SDL_Rect PaddleJ2,SDL_Rect Ball) {
 
 	int left_PaddleJ2,left_Ball;
@@ -180,7 +192,7 @@ int check_collision(SDL_Rect PaddleJ1,SDL_Rect PaddleJ2,SDL_Rect Ball) {
 }
 
 
-
+//Permet de déplacer les deux palets
 void handleEvents(gameState *state,coordonnees *dep,coordonnees *dep2){
 
 
@@ -194,11 +206,11 @@ void handleEvents(gameState *state,coordonnees *dep,coordonnees *dep2){
 
                         switch (event.key.keysym.sym)
                             {
-                                case SDLK_z:  dep->y-=5;break;
-                                case SDLK_s: dep->y+=5; break;
-                                case SDLK_UP:   dep2->y-=5; break;
-                                case SDLK_DOWN:  dep2->y+=5; break;
-                                case SDLK_ESCAPE: state->g_bRunning=0;break;
+                                case SDLK_z:  dep->y-=5;break;//Touche z
+                                case SDLK_s: dep->y+=5; break;//Touche s
+                                case SDLK_UP:   dep2->y-=5; break;//fleche haut
+                                case SDLK_DOWN:  dep2->y+=5; break;//Fleche bas
+                                case SDLK_ESCAPE: state->g_bRunning=0;break;//exit
                             }
                             break;
 
